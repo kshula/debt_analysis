@@ -1,33 +1,8 @@
-import pandas as pd
 import streamlit as st
 from sklearn.model_selection import train_test_split
-from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
-from sklearn.metrics import r2_score
 import plotly.graph_objects as go
+import helpers
 
-# Load the dataset
-@st.cache_data  # Cache data loading for improved performance
-def load_data(filename):
-    return pd.read_csv(filename)
-
-# Function to train and evaluate models
-def train_and_evaluate_models(X_train, X_test, y_train, y_test):
-    results = {}
-    models = {
-        'Random Forest': RandomForestRegressor(),
-        'Gradient Boosting': GradientBoostingRegressor()
-    }
-
-    for name, model in models.items():
-        model.fit(X_train, y_train)
-        y_pred = model.predict(X_test)
-        accuracy = model.score(X_test, y_test)
-        r2 = r2_score(y_test, y_pred)
-        results[name] = {'Accuracy': accuracy, 'R2 Score': r2, 'Predictions': y_pred}
-
-    return results
-
-# Function to plot debt service predictions over time
 def plot_predictions_over_time(predictions, periods):
     fig = go.Figure()
 
@@ -47,12 +22,11 @@ def plot_predictions_over_time(predictions, periods):
 
     return fig
 
-# Main function to run the Streamlit app
 def main():
     st.title("Debt Service Forecasting and Analysis")
 
     # Load data
-    data = load_data('data\\data_1.csv')
+    data = helpers.load_data('data/data.csv')
 
     # Splitting features and target variable
     X = data.drop('Debt_service', axis=1)
@@ -61,8 +35,8 @@ def main():
     # Splitting data into train and test sets (80:20)
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-    # Train and evaluate models
-    results = train_and_evaluate_models(X_train, X_test, y_train, y_test)
+    # Train and evaluate models using helper functions
+    results = helpers.train_and_evaluate_models(X_train, X_test, y_train, y_test)
 
     # Display results
     st.subheader("Model Evaluation Results:")
@@ -76,7 +50,7 @@ def main():
     st.sidebar.title("Analysis")
 
     # Allow user to select forecast periods
-    periods = st.sidebar.slider("Select Forecast Periods", min_value=1, max_value=50, value=10)
+    periods = st.sidebar.slider("Select Forecast Periods", min_value=1, max_value=20, value=10)
 
     # Get debt service predictions for selected periods
     predictions = {}
