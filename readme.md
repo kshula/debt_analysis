@@ -1,10 +1,12 @@
 # Debt Analysis and Prediction with Machine learning
+![Debt Service Analysis](images\debt.png)
 
 This project is a Streamlit web application designed for debt service analysis and prediction. It includes features for evaluating lender classification using K-Nearest Neighbors (KNN) and predicting debt service using Random Forest and Gradient Boosting models.
 
 ## Features
 
 ### 1. Lender Classification with KNN
+![Lender Classification](images\model.png)
 
 The application includes a functionality to perform lender classification based on debt characteristics using the K-Nearest Neighbors (KNN) algorithm. The key steps involved are:
 
