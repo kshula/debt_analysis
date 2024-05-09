@@ -63,8 +63,8 @@ def main():
     page = st.sidebar.radio("Go to", ("Home", "Model Accuracy", "Predictions", "Debt Analysis"))
 
     if page == "Home":
-        st.title("Home")
-        st.write("Welcome to Debt Service Forecasting and Analysis!")
+        st.title("Zambia Debt Analysis with Machine learning")
+        st.write("This project is a Streamlit web application designed for debt service analysis and prediction. It includes features for evaluating lender classification using K-Nearest Neighbors (KNN) and predicting debt service using Random Forest and Gradient Boosting models.")
 
         # Load data
         data = pd.read_csv('data/data_1.csv')
