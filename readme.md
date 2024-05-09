@@ -28,5 +28,34 @@ The application offers debt service prediction using two machine learning models
    Ensure you have Python installed. Clone this repository and navigate to the project directory.
 
    ```bash
-   git clone https://github.com/your/repository.git
-   cd repository
+   git clone https://github.com/kshula/debt_analysis.git
+   cd debt
+   ```
+
+
+    Install the required Python packages using pip and the provided requirements.txt file.
+
+```bash
+Copy code
+pip install -r requirements.txt
+```
+## Running the Application
+Start the Streamlit web app by running the following command in your terminal.
+```bash
+Copy code
+streamlit run main.py
+```
+This will launch the web application in your default web browser.
+## Navigation
+Home: Displays an overview of debt service over time.
+Model Accuracy: Evaluates model performance on debt service data.
+Predictions: Generates future predictions for debt service using selected models.
+Debt Analysis: Machine learning KNN Analysis
+
+## File Structure
+main.py: Main Python script containing Streamlit application code.
+data/: Directory containing dataset files used by the application.
+requirements.txt: List of Python packages required for the project.
+
+## Contributors
+Kampamba Shula
